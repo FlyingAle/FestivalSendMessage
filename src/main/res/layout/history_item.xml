@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@mipmap/sms_item"
+    android:layout_height="100dp">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:id="@+id/history_Tv_ContactName"
+                android:text="text"/>
+            <TextView
+                android:textColor="#09e4c6"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hisory_Tv_PhoneNumber"
+                android:textSize="20sp"
+                android:text="1111111111111"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_marginBottom="9dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/history_Tv_Message"
+            android:text="111111111111111111111111"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/history_Tv_Message" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:id="@+id/history_Tv_Date"
+            android:text="1111-11-11 11:11"
+            android:textColor="#aaaaaa"
+            android:layout_gravity="bottom|right"/>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

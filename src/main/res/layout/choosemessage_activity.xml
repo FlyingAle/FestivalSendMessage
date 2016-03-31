@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activitys.ChooseMessagesActivity"
+    android:layout_height="match_parent">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/id_listview">
+    </ListView>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/floatingActionButton"
+        android:src="@mipmap/icon_to_send"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_margin"
+        app:borderWidth="0dp"
+        app:backgroundTint="@color/main_color"
+        ></android.support.design.widget.FloatingActionButton>
+
+</RelativeLayout>
