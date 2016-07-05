@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="短信发送历史"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:gravity="center|left"
+        android:background="#333333"
+        android:textColor="#c2b4a0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/topText" />
+    <TextView
+        android:text="你还没发送过任何信息,快去发个信儿吧"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

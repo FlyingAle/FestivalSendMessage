@@ -29,6 +29,7 @@ public class ChooseMessagesActivity extends Activity implements OnClickListener{
     private FloatingActionButton m_Fab_ToSend;
     public static List<FestivalMessageBean> festivalMessageBeans = new ArrayList<FestivalMessageBean>();
     public static final String KEY_NOMODELMESSAGE = "noModelMessage"; //不使用模板KEY
+    public static final String FESTIVAL_ID = "FESTIVAL_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,8 @@ public class ChooseMessagesActivity extends Activity implements OnClickListener{
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this,SendMessagesActivity.class);
-        intent.putExtra(KEY_NOMODELMESSAGE,festivalId);
+        intent.putExtra(KEY_NOMODELMESSAGE,true);
+        intent.putExtra(FESTIVAL_ID,festivalId);
         startActivity(intent);
     }
 }

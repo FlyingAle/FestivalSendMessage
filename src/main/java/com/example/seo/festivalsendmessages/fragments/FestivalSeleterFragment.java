@@ -1,21 +1,18 @@
 package com.example.seo.festivalsendmessages.fragments;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ListView;
 
-import com.example.seo.festivalsendmessages.Beans.FestivalDateBean;
-import com.example.seo.festivalsendmessages.Activitys.ChooseMessagesActivity;
-import com.example.seo.festivalsendmessages.DbHelpers.DbOpenHelper;
 import com.example.seo.festivalsendmessages.Activitys.MainActivity;
+import com.example.seo.festivalsendmessages.Adapters.FestivalListAdapter;
+import com.example.seo.festivalsendmessages.Beans.FestivalDateBean;
+import com.example.seo.festivalsendmessages.DbHelpers.DbOpenHelper;
 import com.example.seo.festivalsendmessages.R;
-import com.example.seo.festivalsendmessages.view.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +20,15 @@ import java.util.List;
 /**
  * Created by Seo on 2016/3/7.
  */
-public class FestivalSeleterFragment extends android.support.v4.app.Fragment implements OnClickListener{
+public class FestivalSeleterFragment extends android.support.v4.app.Fragment{
 
     public static final String ID_FESTIVAL = "ID_FESTIVAL";
-    private FlowLayout flowLayout;
+//    private FlowLayout flowLayout;
     private View view;
     private static SQLiteDatabase database;
-    public static List<FestivalDateBean> festivalDateBeans ;
+    public  List<FestivalDateBean> festivalDateBeans ;
+    private ListView mFestivalListView;
+    private  FestivalListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +43,9 @@ public class FestivalSeleterFragment extends android.support.v4.app.Fragment imp
     public void initViews()
     {
         LayoutInflater inflater = LayoutInflater.from(view.getContext());
-        flowLayout = (FlowLayout) view.findViewById(R.id.festival_flowLayout);
+        mFestivalListView = (ListView) view.findViewById(R.id.FestivalList);
+        mFestivalListView.setAdapter(adapter);
+/*        flowLayout = (FlowLayout) view.findViewById(R.id.festival_flowLayout);
         for (int i=0;i<festivalDateBeans.size();i++)
         {
             FestivalDateBean bean = festivalDateBeans.get(i);
@@ -53,10 +54,10 @@ public class FestivalSeleterFragment extends android.support.v4.app.Fragment imp
             button.setTag(bean.getFestivalId());
             button.setOnClickListener(this);
             flowLayout.addView(button);
-        }
+        }*/
     }
 
-    public static void initDatas()
+    public  void initDatas()
     {
         String festivalName;
         int festivalId;
@@ -72,17 +73,6 @@ public class FestivalSeleterFragment extends android.support.v4.app.Fragment imp
                 festivalDateBeans.add(bean);
             }
         }
+        adapter = new FestivalListAdapter(getContext(),festivalDateBeans,R.layout.festival_item);
     }
-
-    public static void refresh()
-    {
-        initDatas();
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent  intent = new Intent(getActivity(),ChooseMessagesActivity.class);
-        intent.putExtra(ID_FESTIVAL,(int)v.getTag());
-        startActivity(intent);
-        }
 }

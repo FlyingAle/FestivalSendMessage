@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +30,41 @@ public class MessagesHistoryFragment extends android.support.v4.app.Fragment {
     private SQLiteDatabase database;
     private List<MessageHistoryBean> dataBeans = new ArrayList<MessageHistoryBean>();
     private View view;
+    private boolean isCursorNull = false;
+    private static final String TAG = "MessagesHistoryFragment";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.messages_histroy,container,false);
         database = MainActivity.database;
         initDatas();
-        initViews();
+        if(isCursorNull)
+        {
+            view = inflater.inflate(R.layout.nooneshow,container,false);
+        }
+        else
+        {
+            view = inflater.inflate(R.layout.messages_histroy,container,false);
+            initViews();
+        }
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause: ");
+        onDestroy();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy: ");
     }
 
     private void initDatas()
@@ -51,27 +80,36 @@ public class MessagesHistoryFragment extends android.support.v4.app.Fragment {
                 String message = null;
                 String name = getContactName(phoneNumber);
                 Cursor select = database.query(DbOpenHelper.FestivalMessagesTable, new String[]{DbOpenHelper.FestivalMessagesTableColumns[1]}, "_id = " + messageId, null, null, null, null);
-                if(select!=null) {
-                    select.moveToNext();
+                if(select.moveToFirst()) {
                     message = select.getString(select.getColumnIndex(DbOpenHelper.FestivalMessagesTableColumns[1]));
                 }
                 select.close();
-                cursor.close();
                 MessageHistoryBean bean = new MessageHistoryBean(phoneNumber,name,messageId,festivalId,date,message);
                 dataBeans.add(bean);
             }
+        }
+        if(cursor.getCount() == 0) {
+            isCursorNull = true;
         }
         cursor.close();
     }
 
     private String getContactName(String phoneNumber)
     {
-        Cursor contactId = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null, ContactsContract.CommonDataKinds.Phone.NUMBER + "= "+ phoneNumber,null,null);
-        int id = contactId.getInt(contactId.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
-        Cursor cursor = getActivity().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, ContactsContract.Contacts._ID + "=" + id, null, null);
-        String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        String name = null;
+        Cursor contactId = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null, ContactsContract.CommonDataKinds.Phone.NUMBER + "=?",new String[]{phoneNumber},null,null);
+        if(contactId.moveToFirst())
+        {
+            name = contactId.getString(contactId.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+        }
+/*        Cursor contactId = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME,
+                ContactsContract.CommonDataKinds.Phone.NUMBER}, ContactsContract.CommonDataKinds.Phone.NUMBER + "= ?",new String[]{phoneNumber},null);
+        String name = contactId.getString(contactId.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));*/
+//        int id = contactId.getInt(contactId.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
+/*        Cursor cursor = getActivity().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, ContactsContract.Contacts._ID + "=?",new String[]{new String(String.valueOf(id))}, null);
+        String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));*/
         contactId.close();
-        cursor.close();
+//        cursor.close();
         return name;
     }
 

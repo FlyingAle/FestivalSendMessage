@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.seo.festivalsendmessages.Activitys.ChooseMessagesActivity;
 import com.example.seo.festivalsendmessages.Activitys.SendMessagesActivity;
 import com.example.seo.festivalsendmessages.Beans.FestivalMessageBean;
 import com.example.seo.festivalsendmessages.R;
@@ -46,6 +47,7 @@ public class ChooseMessageBaseAdapter extends CommonAdapter<FestivalMessageBean>
         Bundle bundle = new Bundle();
         bundle.putSerializable(BUNDLEKEY,bean);
         intent.putExtra(INTENTKEY,bundle);
+        intent.putExtra(ChooseMessagesActivity.KEY_NOMODELMESSAGE,false);
         mContext.startActivity(intent);
     }
 }

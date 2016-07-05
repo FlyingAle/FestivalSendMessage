@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="设置"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:gravity="center|left"
+        android:background="#333333"
+        android:textColor="#c2b4a0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/topText" />
+    <ListView
+        android:background="#ffffff"
+        android:id="@+id/setting_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>

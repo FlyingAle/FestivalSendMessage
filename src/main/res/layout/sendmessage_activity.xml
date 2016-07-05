@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
+    <TextView
+        android:text="提醒列表"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:gravity="center|left"
+        android:background="#333333"
+        android:textColor="#c2b4a0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/topText" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,54 +22,69 @@
             android:orientation="horizontal"
             android:id="@+id/select_context"
             android:layout_marginTop="3dp"
+            android:padding="5dp"
             android:layout_height="wrap_content">
             <com.example.seo.festivalsendmessages.view.FlowLayout
                 android:id="@+id/id_Fl_contacts"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_weight="32"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/id_Bt_addcontact"
                 android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="选择联系人"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/checkLayout"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_above="@+id/id_Fab_sendMessage"
+            android:padding="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="36dp"
+            android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预约发送"
+            android:id="@+id/subscribeSend"
+            android:checked="false"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/textView" />
+        </LinearLayout>
+
         <EditText
             android:id="@+id/id_Et_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#777"
+            android:padding="5dp"
+            android:gravity="left|top"
             android:background="@mipmap/sms_item"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
-            android:textSize="14sp"/>
-    </RelativeLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_Fab_sendMessage"
-        android:src="@mipmap/icon_to_send"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_gravity="center_horizontal|bottom"
-        app:borderWidth="0dp"
-        app:backgroundTint="@color/main_color"
-        ></android.support.design.widget.FloatingActionButton>
-    <FrameLayout
-        android:clickable="true"
-        android:visibility="invisible"
-        android:id="@+id/id_FL_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ProgressBar
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
+            android:textSize="16sp"
+            android:layout_above="@+id/checkLayout"
+            android:layout_alignParentStart="true" />
+
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发送中"
-            android:layout_gravity="center"/>
-    </FrameLayout>
-</FrameLayout>
+            android:id="@+id/id_Fab_sendMessage"
+            android:src="@mipmap/icon_to_send"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_gravity="center_horizontal|bottom"
+            app:borderWidth="0dp"
+            app:backgroundTint="#333333"
+            ></android.support.design.widget.FloatingActionButton>
+    </RelativeLayout>
+</LinearLayout>

@@ -21,5 +21,6 @@ public class MessageHistoryBaseAdapter extends CommonAdapter<MessageHistoryBean>
     @Override
     public void setConvertData(ViewHolder holder, MessageHistoryBean messageHistoryBean) {
         holder.setTextView_Text(R.id.history_Tv_ContactName,messageHistoryBean.getContactName()).setTextView_Text(R.id.hisory_Tv_PhoneNumber,messageHistoryBean.getAcceptanceNumber()).setTextView_Text(R.id.history_Tv_Message,messageHistoryBean.getMessage());
+        holder.setTextView_Text(R.id.history_Tv_date,messageHistoryBean.getDate());
     }
 }

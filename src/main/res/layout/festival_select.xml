@@ -2,11 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.seo.festivalsendmessages.view.FlowLayout
-        android:padding="5dp"
+    <TextView
+        android:text="提醒列表"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:gravity="center|left"
+        android:background="#333333"
+        android:textColor="#c2b4a0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#444f8e9a"
-        android:id="@+id/festival_flowLayout">
-        </com.example.seo.festivalsendmessages.view.FlowLayout>
+        android:layout_height="50dp"
+        android:id="@+id/topText" />
+    <ListView
+        android:id="@+id/FestivalList"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 </LinearLayout>

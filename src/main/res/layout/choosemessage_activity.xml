@@ -1,9 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activitys.ChooseMessagesActivity"
     android:layout_height="match_parent">
+    <TextView
+        android:text="短信选择"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:gravity="center|left"
+        android:background="#333333"
+        android:textColor="#c2b4a0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/topText" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/fab_margin"
         app:borderWidth="0dp"
-        app:backgroundTint="@color/main_color"
+        app:backgroundTint="#333333"
         ></android.support.design.widget.FloatingActionButton>
-
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
